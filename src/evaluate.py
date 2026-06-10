@@ -17,4 +17,14 @@ def evaluate_model(model: KMeans, features: np.ndarray) -> dict:
         - 'silhouette_score': float — qualidade dos clusters (entre -1 e 1, maior é melhor)
         - 'n_clusters': int — número de clusters do modelo
     """
-    pass
+    
+    n_clusters = 5
+    inertia = model.inertia_
+    sil = silhouette_score(features, model.labels_)
+    metrics = {
+    "inertia": round(inertia, 4),
+    "silhouette_score": round(sil, 4),
+    "n_clusters": n_clusters}
+    return metrics
+
+    

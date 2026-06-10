@@ -19,6 +19,9 @@ def load_data(filepath: str) -> np.ndarray:
     """
     
     filepath = "./data/raw/points.csv"
+    df = pd.read_csv(filepath)
+    points = df.to_numpy()
+    return points
 
    
 def prepare_features(points: np.ndarray) -> Tuple[np.ndarray, StandardScaler]:
@@ -32,8 +35,7 @@ def prepare_features(points: np.ndarray) -> Tuple[np.ndarray, StandardScaler]:
         Tupla (features_normalizados, scaler)
         O scaler deve ser guardado para inverter a transformação depois.
     """
-     # ---- Preparar features ----
-    
+     
     scaler = StandardScaler()
     features = scaler.fit_transform(points)
-    return features
+    return features, scaler
